@@ -1,0 +1,23 @@
+.columns{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px; 
+  }
+  
+  .card{
+    width: 20rem;
+    margin: 1rem;
+  }
+  
+  .ingredientList{
+    list-style: inside;  
+  }
+  
+  .title is-4{
+    text-align: center;
+  }
+  
+  .btnDetails{
+    margin: 0 auto;
+    display: block;
+  }
