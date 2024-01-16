@@ -1,36 +1,38 @@
-import { Link, useParams } from "react-router-dom"
-import ArregloArticulos from "../asserts/articulos"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import "bulma/css/bulma.css"
 import "../Styles.css"
 import React, { useEffect } from "react"
+import { ObtenerArticulosPorCategoria,ObtenerTodosLosArticulos } from "../services/firebase"
 
 const imgArts = require.context("../img/")
 
 function ItemListContainer() {
     const { categoria } = useParams()
-
     const [articulos, setArticulos] = React.useState([])
+    const navigateTo = useNavigate();
 
     useEffect(() => {
         if (categoria) {
-
-            const categoriasFiltradas = FiltroCategoria(categoria)
-            setArticulos(categoriasFiltradas)
-
+           ObtenerArticulosPorCategoria(categoria).then((resultado) => {
+                setArticulos(resultado)
+                if (resultado.length == 0){
+                    navigateTo("*")
+                  }
+            }).catch((error) => {
+                navigateTo("*")
+            })
         } else {
-
-            setArticulos(ArregloArticulos)
+            ObtenerTodosLosArticulos().then((resultado) => {
+                setArticulos(resultado)
+            }).catch((error) => {
+                navigateTo("*")
+            })
         }
 
 
 
     }, [categoria])
 
-    function FiltroCategoria(categoria) {
-
-        return ArregloArticulos.filter((articulo) => articulo.categoria == categoria)
-
-    }
 
     return (
 
