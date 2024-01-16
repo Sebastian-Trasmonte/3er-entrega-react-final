@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState } from "react"
+import "bulma/css/bulma.css"
 
-function BotonesCarrito({ModificarCarrito}) {
+function BotonesCarrito({ ModificarCarrito }) {
 
     const [cantidad, setcantidad] = useState(1);
 
@@ -17,10 +18,10 @@ function BotonesCarrito({ModificarCarrito}) {
     return (
         <>
             <div>
-                <button onClick={AgregarAlCarrito}>+</button>
+                <button class="button is-dark" onClick={QuitarDelCarrito}>-</button>
                 <span>{cantidad}</span>
-                <button onClick={QuitarDelCarrito}>-</button>
-                <button onClick={() => ModificarCarrito(cantidad)}>Agregar al carrito</button>
+                <button class="button is-dark" onClick={AgregarAlCarrito}>+</button>
+                <button class="button is-dark" onClick={() => ModificarCarrito(cantidad)}>Agregar al carrito</button>
             </div>
         </>
     );

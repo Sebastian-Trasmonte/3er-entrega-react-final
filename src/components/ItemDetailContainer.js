@@ -2,45 +2,43 @@ import { useNavigate, useParams } from "react-router-dom"
 import ArregloArticulos from "../asserts/articulos"
 import "bulma/css/bulma.css"
 import "../Styles.css"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import BotonesCarrito from "./ButtonsCart"
+import Toastify from 'toastify-js';
+import { cartContext } from "../storage/ContextProvider"
+import "toastify-js/src/toastify.css"
 
 const imgArts = require.context("../img/")
 
-
-
 function ItemDetailtContainer() {
     const { idProducto } = useParams()
-    console.log("aqui va el id producto", idProducto)
     const [articulo, setArticulo] = useState()
+    const { AgregarCalzado } = useContext(cartContext);
 
     const navigateTo = useNavigate()
 
-
     useEffect(() => {
-
-
-
         if (idProducto) {
-
             const productoFiltrado = FiltroArticulo(idProducto)
             setArticulo(productoFiltrado)
-
-
         } else {
-
             navigateTo("*")
-
         }
-
-
-
     }, [idProducto])
 
     function FiltroArticulo(idProducto) {
-
         return ArregloArticulos.find((articulo) => articulo.id == idProducto)
+    }
 
+    function ModificarCarrito(cantidad) {
+        Toastify({
+            text: "Agregaste la zapatilla ${articulo.modelo} X ${cantidad}",
+            duration: 1500,
+            gravity: "bottom",
+            position: "center",
+        }).showToast();
+        articulo.cantidad = cantidad;
+        AgregarCalzado(articulo);
     }
 
     return (
@@ -59,14 +57,12 @@ function ItemDetailtContainer() {
                                 <p class="title is-5">$ {articulo.precio}</p>
                             </div>
                         </div>
+                <BotonesCarrito ModificarCarrito={ModificarCarrito}/>
                     </div>
                 </div>
-                <BotonesCarrito />
             </div>
         </div >) : (<div>Cargando...</div>)
-
     )
-
 }
 
 export default ItemDetailtContainer
