@@ -3,9 +3,11 @@ import LayOut from "./Pages/LayOut";
 import Home from "./Pages/Home";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailtContainer from "./components/ItemDetailContainer";
+import ContextProvider from "./storage/ContextProvider";
 
 function App() {
   return (
+    <ContextProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LayOut />}>
@@ -17,6 +19,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </ContextProvider>
   );
 }
 

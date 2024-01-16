@@ -3,6 +3,7 @@ import ArregloArticulos from "../asserts/articulos"
 import "bulma/css/bulma.css"
 import "../Styles.css"
 import { useEffect, useState } from "react"
+import BotonesCarrito from "./ButtonsCart"
 
 const imgArts = require.context("../img/")
 
@@ -60,6 +61,7 @@ function ItemDetailtContainer() {
                         </div>
                     </div>
                 </div>
+                <BotonesCarrito />
             </div>
         </div >) : (<div>Cargando...</div>)
 
