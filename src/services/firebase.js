@@ -51,8 +51,9 @@ export async function ObtenerArticuloPorId(articuloId) {
   return articulo;
 }
 
-export async function InsertarArticulo(articulo) {
-  const Collection = collection(db, "articulos");
-      delete articulo.id;
-      addDoc(Collection, articulo).then((res) => console.log("creado"));
+export async function InsertarOrden(form, cart) {
+  const Collection = collection(db, "ordenes");
+  form.carrito = cart;
+  const docRef = await addDoc(Collection, form);
+  return docRef.id;
 }

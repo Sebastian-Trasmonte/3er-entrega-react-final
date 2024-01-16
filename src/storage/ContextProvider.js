@@ -11,7 +11,7 @@ export default function ContextProvider(props) {
         //-1 cuando no encuentra el resultado
         if (resultado != -1) {
             const nuevoCarrito = [...carrito]
-            nuevoCarrito[resultado].quantity = calzadoIngresado.cantidad + carrito[resultado].cantidad;
+            nuevoCarrito[resultado].cantidad = calzadoIngresado.cantidad + carrito[resultado].cantidad;
             modificarCarrito(nuevoCarrito);
         }
         else {
@@ -31,9 +31,9 @@ export default function ContextProvider(props) {
     }
 
 
-    const ObtenerContadorDeCarrito = () => carrito.reduce((acumulador, valorActual) => acumulador + valorActual.quantity, 0);
+    const ObtenerContadorDeCarrito = () => carrito.reduce((acumulador, valorActual) => acumulador + valorActual.cantidad, 0);
 
-    const ObtenerTotalAPagar = () => carrito.reduce((acumulador, valorActual) => acumulador + (valorActual.price * valorActual.quantity), 0);
+    const ObtenerTotalAPagar = () => carrito.reduce((acumulador, valorActual) => acumulador + (valorActual.precio * valorActual.cantidad), 0);
 
 
     const exportarFunciones = {
