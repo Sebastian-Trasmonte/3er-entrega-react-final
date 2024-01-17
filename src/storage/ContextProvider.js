@@ -11,7 +11,7 @@ export default function ContextProvider(props) {
         //-1 cuando no encuentra el resultado
         if (resultado != -1) {
             const nuevoCarrito = [...carrito]
-            nuevoCarrito[resultado].cantidad = calzadoIngresado.cantidad + carrito[resultado].cantidad;
+            nuevoCarrito[resultado].cantidad = calzadoIngresado.cantidad + nuevoCarrito[resultado].cantidad;
             modificarCarrito(nuevoCarrito);
         }
         else {

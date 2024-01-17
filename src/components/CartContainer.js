@@ -11,7 +11,7 @@ function CartContainer() {
     const navigateTo = useNavigate();
 
     function CrearOrden() {
-        navigateTo(/CrearOrden/);
+        navigateTo(`/CrearOrden/`);
     }
 
     return (
