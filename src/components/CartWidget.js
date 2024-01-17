@@ -8,7 +8,7 @@ function CartWidget() {
     
     return (
          <>
-         <Link to="/cart">
+         <Link to="/Cart">
          <AiOutlineShoppingCart />
                {ObtenerContadorDeCarrito()}
          </Link>

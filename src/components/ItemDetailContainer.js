@@ -31,7 +31,7 @@ function ItemDetailtContainer() {
 
     function ModificarCarrito(cantidad) {
         Toastify({
-            text: "Agregaste la zapatilla ${articulo.modelo} X ${cantidad}",
+            text: `Agregaste la zapatilla ${articulo.modelo}, Cantidad:  ${cantidad}`,
             duration: 1500,
             gravity: "bottom",
             position: "center",

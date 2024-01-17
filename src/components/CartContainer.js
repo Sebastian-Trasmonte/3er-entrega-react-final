@@ -1,21 +1,24 @@
 import { cartContext } from "../storage/ContextProvider";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import "bulma/css/bulma.css"
+
 const imgArts = require.context("../img/")
+
 
 function CartContainer() {
     const { carrito,VaciarCarrito, EliminarCalzado,ObtenerTotalAPagar } = useContext(cartContext);
     const navigateTo = useNavigate();
 
     function CrearOrden() {
-        navigateTo(`/crear-orden/`);
+        navigateTo(/CrearOrden/);
     }
 
     return (
         <>
             {carrito.length > 0 ?
                 <div>
-                    <table>
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th></th>
@@ -29,8 +32,10 @@ function CartContainer() {
                         <tbody>
                             {carrito.map((articulo) => (
                                 <tr key={articulo.id} >
-                                    <td> <img src={imgArts(`./${articulo.imagen}`)} alt="imagen de calzado" /></td>
-                                    
+                                    <td> <img src={imgArts(`./${articulo.imagen}`)} 
+                                    alt="imagen de calzado" 
+                                    style={{height: '50px', width: '50px'}}
+                                    /></td>                                    
                                     <td>{articulo.modelo}</td>
                                     <td>$ {articulo.precio}</td>
                                     <td>{articulo.cantidad}</td>
@@ -53,12 +58,10 @@ function CartContainer() {
                         </tfoot>
                     </table>
                     <div> 
-                        <button onClick={() => VaciarCarrito()}>Eliminar carrito</button>
+                        <button onClick={() => VaciarCarrito()}>Eliminar items</button>
                         <button onClick={() => CrearOrden()}>Finalizar carrito</button>
-
                     </div>
                 </div>
-
                 :
                 <div>
                     <h1>Aún no tenes artículos en tu carrito</h1>                    
